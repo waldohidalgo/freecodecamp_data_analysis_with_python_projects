@@ -1,6 +1,6 @@
 # Data Analysis with Python Projects
 
-Repositorio con el código solución a los 5 proyectos requisitos obligatorios para obtener la ![https://www.freecodecamp.org/learn/data-analysis-with-python/](Data Analysis with Python)
+Repositorio con el código solución a los 5 proyectos requisitos obligatorios para obtener la [Data Analysis with Python Certification](https://www.freecodecamp.org/learn/data-analysis-with-python/)
 
 Hasta la fecha llevo realizado: Proyecto 1. A medida que vaya realizando el resto de proyectos los iré subiendo a este repositorio.
 
