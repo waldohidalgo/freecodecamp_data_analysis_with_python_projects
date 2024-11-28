@@ -2,7 +2,7 @@
 
 Repositorio con el código solución a los 5 proyectos requisitos obligatorios para obtener la [Data Analysis with Python Certification](https://www.freecodecamp.org/learn/data-analysis-with-python/)
 
-Hasta la fecha llevo realizado: Proyecto 1. A medida que vaya realizando el resto de proyectos los iré subiendo a este repositorio.
+Hasta la fecha llevo realizado: Proyecto 1, 2 y 3. A medida que vaya realizando el resto de proyectos los iré subiendo a este repositorio.
 
 ## Listado de Proyectos
 
@@ -48,6 +48,8 @@ def calculate(list):
 ```
 
 ### 2- Demographic Data Analyzer
+
+El archivo CSV utilizado llamado **adult.data.csv** NO lo he cargado en mi repositorio por pesar demasiado. Sin embargo, el archivo se encuentra en la siguiente URL: [Link a Archivo](https://github.com/freeCodeCamp/boilerplate-demographic-data-analyzer/blob/main/adult.data.csv)
 
 #### 2.1- Proyecto Aprobado
 
