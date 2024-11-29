@@ -2,7 +2,36 @@
 
 Repositorio con el código solución a los 5 proyectos requisitos obligatorios para obtener la [Data Analysis with Python Certification](https://www.freecodecamp.org/learn/data-analysis-with-python/)
 
-Hasta la fecha llevo realizado: Proyecto 1, 2 y 3. A medida que vaya realizando el resto de proyectos los iré subiendo a este repositorio.
+Hasta la fecha llevo realizado: Proyecto 1, 2, 3 y 4. A medida que vaya realizando el resto de proyectos los iré subiendo a este repositorio.
+
+## Tabla de Contenidos
+
+- [Data Analysis with Python Projects](#data-analysis-with-python-projects)
+  - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [Listado de Proyectos](#listado-de-proyectos)
+    - [1- Mean-Variance-Standard Deviation Calculator](#1--mean-variance-standard-deviation-calculator)
+      - [1.1- Proyecto Aprobado](#11--proyecto-aprobado)
+      - [1.2- Todos los tests superados](#12--todos-los-tests-superados)
+      - [1.3- Código Creado](#13--código-creado)
+    - [2- Demographic Data Analyzer](#2--demographic-data-analyzer)
+      - [2.1- Proyecto Aprobado](#21--proyecto-aprobado)
+      - [2.2- Todos los tests superados](#22--todos-los-tests-superados)
+      - [2.3- Código Creado](#23--código-creado)
+    - [3- Medical Data Visualizer](#3--medical-data-visualizer)
+      - [3.1- Proyecto Aprobado](#31--proyecto-aprobado)
+      - [3.2- Todos los tests superados](#32--todos-los-tests-superados)
+      - [3.3- Código Creado](#33--código-creado)
+      - [3.4- Gráficos Generados](#34--gráficos-generados)
+        - [3.4.1- Gráfico de Columnas](#341--gráfico-de-columnas)
+        - [3.4.2- Mapa de Calor](#342--mapa-de-calor)
+    - [4- Mean-Variance-Standard Deviation Calculator](#4--mean-variance-standard-deviation-calculator)
+      - [4.1- Proyecto Aprobado](#41--proyecto-aprobado)
+      - [4.2- Todos los tests superados](#42--todos-los-tests-superados)
+      - [4.3- Código Creado](#43--código-creado)
+      - [4.4- Gráficos Generados](#44--gráficos-generados)
+        - [4.4.1- Gráfico de Líneas](#441--gráfico-de-líneas)
+        - [4.4.2- Gráfico de Barras](#442--gráfico-de-barras)
+        - [4.4.3- Box Plot](#443--box-plot)
 
 ## Listado de Proyectos
 
@@ -214,12 +243,145 @@ def draw_heat_map():
     return fig
 ```
 
-#### 3.3- Gráficos Generados
+#### 3.4- Gráficos Generados
 
-##### 3.3.1- Gráfico de Columnas
+##### 3.4.1- Gráfico de Columnas
 
 ![Gráfico de Columnas](./Proyecto3_MedicalDataVisualize/catplot.png)
 
-##### 3.3.2- Mapa de Calor
+##### 3.4.2- Mapa de Calor
 
 ![Mapa de Calor](./Proyecto3_MedicalDataVisualize/heatmap.png)
+
+### 4- Mean-Variance-Standard Deviation Calculator
+
+El archivo CSV utilizado llamado **fcc-forum-pageviews.csv** NO lo he cargado en mi repositorio por pesar demasiado. Sin embargo, el archivo se encuentra en la siguiente URL: [Link a Archivo](https://github.com/freeCodeCamp/boilerplate-page-view-time-series-visualizer/blob/main/fcc-forum-pageviews.csv)
+
+#### 4.1- Proyecto Aprobado
+
+![Cuarto Proyecto Aprobado](./Proyecto4_PageViewTimeSeriesVisualizer/passed.webp)
+
+#### 4.2- Todos los tests superados
+
+![All tests passed](./Proyecto4_PageViewTimeSeriesVisualizer/all_tests_passed.jpg)
+
+#### 4.3- Código Creado
+
+```py
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+from pandas.plotting import register_matplotlib_converters
+import calendar
+import numpy as np
+register_matplotlib_converters()
+np.float = float
+# Import data (Make sure to parse dates. Consider setting index column to 'date'.)
+df = pd.read_csv("fcc-forum-pageviews.csv",index_col='date',parse_dates=['date'])
+
+# Clean data
+f1=df.value>df.value.quantile(0.025)
+f2=df.value<df.value.quantile(0.975)
+df = df[f1 & f2]
+
+
+def draw_line_plot():
+    # Draw line plot
+    fig=plt.figure(figsize=(14, 6))
+    plt.plot(df.index,df.value,'r')
+    plt.grid(True)
+    plt.title('Daily freeCodeCamp Forum Page Views 5/2016-12/2019')
+    plt.xlabel('Date')
+    plt.ylabel('Page Views')
+
+    # Save image and return fig (don't change this part)
+    fig.savefig('line_plot.png')
+    return fig
+
+def draw_bar_plot():
+    # Copy and modify data for monthly bar plot
+    aux = df.resample('M').mean().reset_index()
+
+    aux['year'] = aux['date'].dt.year
+    aux['month'] = aux['date'].dt.month
+
+    df_bar=aux.pivot(index='year', columns='month', values='value')
+    # Draw bar plot
+
+    fig, ax = plt.subplots(figsize=(13, 8))
+
+    colors = plt.cm.tab20c(np.linspace(0, 1, 12))
+
+    width = 0.5 / len(df_bar.columns)
+    x = np.arange(len(df_bar.index))
+    month_names = {i: calendar.month_name[i] for i in range(1, 13)}
+    for i, month in enumerate(df_bar.columns):
+        ax.bar(
+            x + i * width,
+            df_bar[month],
+            width=width,
+            label=f'{month_names[month]}',
+            color=colors[i]
+        )
+
+    ax.legend(title='Months', loc='upper left')
+    ax.set_xlabel('Years', fontsize=12)
+    ax.set_xticks(x + width * (len(df_bar.columns) - 1) / 2)
+    ax.set_xticklabels(df_bar.index, fontsize=10)
+    ax.set_ylabel('Average Page Views',fontsize=12)
+    plt.tight_layout()
+
+    # Save image and return fig (don't change this part)
+    fig.savefig('bar_plot.png')
+    return fig
+
+def draw_box_plot():
+    # Prepare data for box plots (this part is done!)
+    df_box = df.copy()
+    df_box.reset_index(inplace=True)
+    df_box['year'] = [d.year for d in df_box.date]
+    df_box['month'] = [d.strftime('%b') for d in df_box.date]
+
+    # Draw box plots (using Seaborn)
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 7))
+
+    cmap = plt.cm.tab20
+    colors = list(cmap(np.linspace(0, 1, len(df_box['year'].unique()))))
+
+    flierprops = dict(marker='o', color='black', markersize=7, markerfacecolor='red')
+
+    sns.boxplot(x='year', y='value',data=df_box, ax=ax1)
+    ax1.set_title('Year-wise Box Plot (Trend)')
+    ax1.set_xlabel('Year')
+    ax1.set_ylabel('Page Views')
+    ax1.grid(True, color='gray', linestyle='--', linewidth=0.5,dashes=(10, 5))
+
+    colors = list(cmap(np.linspace(0, 1, len(df_box['month'].unique()))))
+    months=list(calendar.month_abbr[1:])
+    sns.boxplot(data=df_box, x='month', y='value', ax=ax2, order=months, hue='month', palette=colors,flierprops=flierprops)
+    ax2.set_title('Month-wise Box Plot (Seasonality)')
+    ax2.set_xlabel('Month')
+    ax2.set_ylabel('Page Views')
+    ax2.grid(True, color='gray', linestyle='--', linewidth=0.5,dashes=(10, 5))
+
+    plt.tight_layout()
+
+    # Save image and return fig (don't change this part)
+    fig.savefig('box_plot.png')
+    return fig
+```
+
+#### 4.4- Gráficos Generados
+
+##### 4.4.1- Gráfico de Líneas
+
+![Gráfico de Líneas](./Proyecto4_PageViewTimeSeriesVisualizer/line_plot.png)
+
+##### 4.4.2- Gráfico de Barras
+
+![Gráfico de Barras](./Proyecto4_PageViewTimeSeriesVisualizer/bar_plot.png)
+
+##### 4.4.3- Box Plot
+
+![Box Plot](./Proyecto4_PageViewTimeSeriesVisualizer/box_plot.png)
