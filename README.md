@@ -92,11 +92,11 @@ El archivo CSV utilizado llamado **adult.data.csv** NO lo he cargado en mi repos
 
 #### 2.1- Proyecto Aprobado
 
-![Segundo Proyecto Aprobado](./Proyect2_DemographicDataAnalyzer/passed.webp)
+![Segundo Proyecto Aprobado](./Proyecto2_DemographicDataAnalyzer/passed.webp)
 
 #### 2.2- Todos los tests superados
 
-![All tests passed](./Proyect2_DemographicDataAnalyzer/all_test_passed.webp)
+![All tests passed](./Proyecto2_DemographicDataAnalyzer/all_test_passed.webp)
 
 #### 2.3- Código Creado
 
