@@ -2,8 +2,6 @@
 
 Repositorio con el código solución a los 5 proyectos requisitos obligatorios para obtener la [Data Analysis with Python Certification](https://www.freecodecamp.org/learn/data-analysis-with-python/)
 
-Hasta la fecha llevo realizado: Proyecto 1, 2, 3 y 4. A medida que vaya realizando el resto de proyectos los iré subiendo a este repositorio.
-
 ## Tabla de Contenidos
 
 - [Data Analysis with Python Projects](#data-analysis-with-python-projects)
@@ -32,6 +30,11 @@ Hasta la fecha llevo realizado: Proyecto 1, 2, 3 y 4. A medida que vaya realizan
         - [4.4.1- Gráfico de Líneas](#441--gráfico-de-líneas)
         - [4.4.2- Gráfico de Barras](#442--gráfico-de-barras)
         - [4.4.3- Box Plot](#443--box-plot)
+    - [5- Sea Level Predictor](#5--sea-level-predictor)
+      - [5.1- Proyecto Aprobado](#51--proyecto-aprobado)
+      - [5.2- Todos los tests superados](#52--todos-los-tests-superados)
+      - [5.3- Código Creado](#53--código-creado)
+      - [5.4- Gráfico Generado: Scatter Plot más Proyecciones](#54--gráfico-generado-scatter-plot-más-proyecciones)
 
 ## Listado de Proyectos
 
@@ -385,3 +388,64 @@ def draw_box_plot():
 ##### 4.4.3- Box Plot
 
 ![Box Plot](./Proyecto4_PageViewTimeSeriesVisualizer/box_plot.png)
+
+### 5- Sea Level Predictor
+
+El archivo CSV utilizado llamado **epa-sea-level.csv** NO lo he cargado en mi repositorio por pesar demasiado. Sin embargo, el archivo se encuentra en la siguiente URL: [Link a Archivo](https://github.com/freeCodeCamp/boilerplate-sea-level-predictor/blob/main/epa-sea-level.csv)
+
+#### 5.1- Proyecto Aprobado
+
+![Quinto Proyecto Aprobado](./Proyecto5_SeaLevelPredictor/passed.webp)
+
+#### 5.2- Todos los tests superados
+
+![All tests passed](./Proyecto5_SeaLevelPredictor/all_tests_passed.jpg)
+
+#### 5.3- Código Creado
+
+```py
+def draw_plot():
+    # Read data from file
+    df=pd.read_csv("epa-sea-level.csv")
+
+    # Create scatter plot
+    plt.figure(figsize=(12, 6))
+    plt.scatter(df['Year'], df['CSIRO Adjusted Sea Level'], alpha=0.5,c='r')
+
+    # Create first line of best fit
+    res = linregress(df['Year'], df['CSIRO Adjusted Sea Level'])
+    years_extended=np.arange(df['Year'].min(), 2051)
+    plt.plot(years_extended, res.intercept + res.slope*years_extended, 'b', label='fitted line')
+
+    # Create second line of best fit
+    years_from_2000=np.arange(2000, 2051)
+    df_2000=df[df.Year>=2000]
+    res_2000=linregress(df_2000.Year, df_2000['CSIRO Adjusted Sea Level'])
+    plt.plot(years_from_2000, res_2000.intercept + res_2000.slope*years_from_2000, 'g', label='2000 fitted line')
+
+    # Add labels and title
+    plt.grid(True, color='gray', linestyle='--', linewidth=0.2,dashes=(25, 25))
+    plt.xlabel('Year', fontsize=12)
+    plt.ylabel('Sea Level (inches)',fontsize=12)
+    plt.title('Rise in Sea Level')
+    plt.tight_layout()
+
+    y_proj_1 = res.intercept + res.slope * 2050
+    y_proj_2 = res_2000.intercept + res_2000.slope * 2050
+    plt.axvline(x=2050, color='purple', linestyle='--', linewidth=1, label='Projection Year (2050)')
+    plt.axhline(y=y_proj_1, color='blue', linestyle='--', linewidth=1)
+    plt.axhline(y=y_proj_2, color='green', linestyle='--', linewidth=1)
+
+
+    plt.text(2040, y_proj_1*1.025, f'{y_proj_1:.2f}', color='blue', va='center', fontsize=12,fontweight='bold')
+    plt.text(2037, y_proj_2*0.975, f'{y_proj_2:.2f}', color='green', va='center', fontsize=12,fontweight='bold')
+
+
+    # Save plot and return data for testing (DO NOT MODIFY)
+    plt.savefig('sea_level_plot.png')
+    return plt.gca()
+```
+
+#### 5.4- Gráfico Generado: Scatter Plot más Proyecciones
+
+![Gráfico Scatter Plot más Proyecciones](./Proyecto5_SeaLevelPredictor/sea_level_plot.png)
