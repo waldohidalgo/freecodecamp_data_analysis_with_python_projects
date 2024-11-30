@@ -23,7 +23,7 @@ Repositorio con el código solución a los 5 proyectos requisitos obligatorios p
       - [3.4- Gráficos Generados](#34--gráficos-generados)
         - [3.4.1- Gráfico de Columnas](#341--gráfico-de-columnas)
         - [3.4.2- Mapa de Calor](#342--mapa-de-calor)
-    - [4- Mean-Variance-Standard Deviation Calculator](#4--mean-variance-standard-deviation-calculator)
+    - [4- Page View Time Series Visualizer](#4--page-view-time-series-visualizer)
       - [4.1- Proyecto Aprobado](#41--proyecto-aprobado)
       - [4.2- Todos los tests superados](#42--todos-los-tests-superados)
       - [4.3- Código Creado](#43--código-creado)
@@ -263,7 +263,7 @@ def draw_heat_map():
 
 ![Mapa de Calor](./Proyecto3_MedicalDataVisualize/heatmap.png)
 
-### 4- Mean-Variance-Standard Deviation Calculator
+### 4- Page View Time Series Visualizer
 
 El archivo CSV utilizado llamado **fcc-forum-pageviews.csv** NO lo he cargado en mi repositorio por pesar demasiado. Sin embargo, el archivo se encuentra en la siguiente URL: [Link a Archivo](https://github.com/freeCodeCamp/boilerplate-page-view-time-series-visualizer/blob/main/fcc-forum-pageviews.csv)
 
