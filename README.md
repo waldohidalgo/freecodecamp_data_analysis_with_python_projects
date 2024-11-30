@@ -6,6 +6,7 @@ Repositorio con el código solución a los 5 proyectos requisitos obligatorios p
 
 - [Data Analysis with Python Projects](#data-analysis-with-python-projects)
   - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [Certificación Obtenida](#certificación-obtenida)
   - [Listado de Proyectos](#listado-de-proyectos)
     - [1- Mean-Variance-Standard Deviation Calculator](#1--mean-variance-standard-deviation-calculator)
       - [1.1- Proyecto Aprobado](#11--proyecto-aprobado)
@@ -35,6 +36,12 @@ Repositorio con el código solución a los 5 proyectos requisitos obligatorios p
       - [5.2- Todos los tests superados](#52--todos-los-tests-superados)
       - [5.3- Código Creado](#53--código-creado)
       - [5.4- Gráfico Generado: Scatter Plot más Proyecciones](#54--gráfico-generado-scatter-plot-más-proyecciones)
+
+## Certificación Obtenida
+
+El link para verificar la certificación es el siguiente: [Verificar Certificación en Freecodecamp](https://www.freecodecamp.org/certification/waldo-hidalgo/data-analysis-with-python-v7)
+
+![Certificación Obtenida](./data-analysis-with-python_certification.webp)
 
 ## Listado de Proyectos
 
